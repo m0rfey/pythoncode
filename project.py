@@ -10,48 +10,54 @@ ks = 0
 
 sp = []
 f = open('xxx.txt')
+#encrypt
+print('Виберіть варінт 1 або 2', '\n', u'1 - Кодувати', '\n',u'2 - Декодувати')
+number = input('Варіант: ')
 
-if os.stat("xxx.txt").st_size == 0: 
-    for iz in symbol:
-        print(iz,':')
-        s = input(u' ')
-        try:
-            if not s:
-                print(u'Не коректно! Поля не повинні бути пустими')
-                break
-            else:
-                sp.append(s)
-                print(sp)
-        except (ValueError, TypeError):
-            print(u'-')
+if number == 1:
+    if os.stat("xxx.txt").st_size == 0:
+        for iz in symbol:
+            print(iz,':')
+            s = input(u' ')
+            try:
+                if not s:
+                    print(u'Не коректно! Поля не повинні бути пустими')
+                    break
+                else:
+                    sp.append(s)
+                    print(sp)
+            except (ValueError, TypeError):
+                print(u'-')
 
-    f = open('xxx.txt', 'w')
-    for ix in sp:
-        f.write("%s\n" % ix)
-    f.close()
+        f = open('xxx.txt', 'w')
+        for ix in sp:
+            f.write("%s\n" % ix)
+        f.close()
 
-else:
-    global spp
-    spp = []
-    for ex in f.readlines():
-        spp.append(ex)
-        #print(spp)
+    else:
+        global spp
+        spp = []
+        for ex in f.readlines():
+            spp.append(ex)
+            #print(spp)
 
 
-txt = input(u'Введіть текст: \n')
-k = []
-for i in txt.lower():
-    for z in range(0, len(symbol)):
-        for l in symbol[z]:
-            if i == l:
-                k.append(spp[z])
-                #print(spp[z])
+    txt = input(u'Введіть текст: \n')
+    k = []
+    for i in txt.lower():
+        for z in range(0, len(symbol)):
+            for l in symbol[z]:
+                if i == l:
+                    k.append(spp[z])
+                    #print(spp[z])
 
-                #print(spp, '=====')
+                    #print(spp, '=====')
 
-str_f = ''.join(k).split()
-print(''.join(str_f))
+    str_f = ''.join(k).split()
+    print(''.join(str_f))
+elif number == 2:
 
+    print(u'Декодування')
 
 
 
