@@ -11,13 +11,13 @@ ks = 0
 sp = []
 f = open('xxx.txt')
 
-if os.stat("xxx.txt").st_size == 0:
+if os.stat("xxx.txt").st_size == 0: 
     for iz in symbol:
         print(iz,':')
         s = input(u' ')
         try:
             if not s:
-                print(u'Не коректро! Начинай заново. Поля не повинні бути пустими')
+                print(u'Не коректно! Поля не повинні бути пустими')
                 break
             else:
                 sp.append(s)
