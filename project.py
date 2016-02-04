@@ -63,12 +63,13 @@ class enigma:
 
     #decrypt
     def decrypt(self):
-        print(u'Декодування')
+        print(u'\nДекодування\n')
 
         txt_dec = input(u'Введіть текст для декодування:\n')
 
         if not txt_dec:
             print('Error')
+            return enigma.decrypt(txt_dec)
         else:
             print('Continue...')
 
