@@ -10,11 +10,12 @@ ks = 0
 
 sp = []
 f = open('xxx.txt')
-#encrypt
+
 print('Виберіть варінт 1 або 2', '\n', u'1 - Кодувати', '\n',u'2 - Декодувати')
 number = input('Варіант: ')
 
-if number == 1:
+#encrypt
+if number == '1':
     if os.stat("xxx.txt").st_size == 0:
         for iz in symbol:
             print(iz,':')
@@ -39,8 +40,6 @@ if number == 1:
         spp = []
         for ex in f.readlines():
             spp.append(ex)
-            #print(spp)
-
 
     txt = input(u'Введіть текст: \n')
     k = []
@@ -49,15 +48,15 @@ if number == 1:
             for l in symbol[z]:
                 if i == l:
                     k.append(spp[z])
-                    #print(spp[z])
-
-                    #print(spp, '=====')
 
     str_f = ''.join(k).split()
     print(''.join(str_f))
-elif number == 2:
+
+#decrypt
+elif number == '2':
 
     print(u'Декодування')
+
 
 
 
