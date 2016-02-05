@@ -1,5 +1,5 @@
 # Ignore directory PyCharm
 .idea/
 
-# Ignore code file
-xxx*.txt
+# Ignore code tmp file
+tmp.txt
