@@ -1,11 +1,15 @@
 __author__ = 'm0rfey'
 # -*- coding: utf-8 -*-
 import os
+import sys
 
 class enigma:
 
-    print('Виберіть варінт 1 або 2', '\n', u'1 - Кодувати', '\n',u'2 - Декодувати')
+    print(u'Виберіть варінт 1 або 2', '\n', u'1 - Кодувати', '\n',u'2 - Декодувати')
     number = input('Варіант: ')
+    #name file open
+    num = 2 #nput('Номер файла: ')
+    strok = 'xxx-'
 
     def __init__(self, symbol, sp, file):
         symbol = (u'а', u'б', u'в', u'г', u'д', u'е', u'є', u'ж', u'з', u'и', u'і', u'ї', u'й', u'к', u'л', u'м',
@@ -13,7 +17,7 @@ class enigma:
                   u'я', u' ', u',', u'.', u'!', u'?', u'\n')
 
         sp = []
-        file = open('xxx.txt')
+        file = open(enigma.strok+str(enigma.num)+'.txt')
         self.symbol = symbol
         self.sp = sp
         self.file = file
@@ -22,7 +26,7 @@ class enigma:
 
     def encrypt(self):
 
-        if os.stat("xxx.txt").st_size == 0: #
+        if os.stat(enigma.strok+str(enigma.num)+'.txt').st_size == 0: #
             for iz in self.symbol:
                 self.iz = iz
                 print(u'Для виходу введіть exit\n' ,iz,':')
@@ -39,11 +43,11 @@ class enigma:
                         self.sp.append(s)
                         print(self.sp)
 
-                    ffile = open('xxx.txt', 'w')
+                    ffile = open(enigma.strok+str(enigma.num)+'.txt', 'w')
                     for ix in self.sp:
                         ffile.write("%s\n" % ix)
                     ffile.close()
-                    return enigma.encrypt(self)     #
+            return enigma.encrypt(self)     #
 
         else:
             print(u'\nФайл шифрування існує \n')
@@ -63,21 +67,37 @@ class enigma:
         print(''.join(str_f))
 
     #decrypt
+
     def decrypt(self):
         print(u'\nДекодування\n')
 
-        txt_dec = input(u'Введіть текст для декодування:\n')
+        self.txt_dec = input(u'Введіть текст для декодування:\n')
 
-        if not txt_dec:
+        if not self.txt_dec:
             print('Error')
-            return enigma.decrypt(txt_dec)
+            return enigma.decrypt(self.txt_dec)
         else:
-            file_open = open('xxx.txt')
-            ssss = len(txt_dec)
+           enigma.blo(self)
 
-            print(len(txt_dec),'\n',list(txt_dec) )
+    def blo(self):
+        n = 2 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        dec = []
+        file_open = open(enigma.strok+str(enigma.num)+'.txt')
+        for j in file_open.readlines():
+            dec.append(j)
+            self.de = ''.join(dec).split()#створюємо список з файлу
 
-            print('Continue...')
+        t = []
+
+        for i in [self.txt_dec.lower()[i:i+n] for i in range(0, len(self.txt_dec), n)]:#розбиваємо введений текст по n символів
+            for z in range(len(self.symbol)):#генеруємо множину з списку символів
+                for l in self.de[z:z+1]:#
+                    if i == l:
+                        t.append(self.symbol[z])
+
+        print('','\n',''.join(t))
+
+
 
     def tobeornottobe(self):
         if enigma.number =='1':
