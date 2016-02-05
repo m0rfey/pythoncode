@@ -33,22 +33,23 @@ class enigma:
                     return enigma.encrypt(self)
                 else:
                     if s == 'exit':
+                        print(u'УВАГА.Робота програми перервана!')
                         break
                     else:
                         self.sp.append(s)
                         print(self.sp)
 
-            ffile = open('xxx.txt', 'w')
-            for ix in self.sp:
-                ffile.write("%s\n" % ix)
-            ffile.close()
+                    ffile = open('xxx.txt', 'w')
+                    for ix in self.sp:
+                        ffile.write("%s\n" % ix)
+                    ffile.close()
+                    return enigma.encrypt(self)     #
 
         else:
             print(u'\nФайл шифрування існує \n')
-            global spp
-            spp = []
+            self.spp = []
             for ex in self.file.readlines():
-                spp.append(ex)
+                self.spp.append(ex)
 
         txt = input(u'Введіть текст: \n')
         k = []
@@ -56,10 +57,10 @@ class enigma:
             for z in range(0, len(self.symbol)):
                 for l in self.symbol[z]:
                     if i == l:
-                            k.append(spp[z])
+                        k.append(self.spp[z])
 
-            str_f = ''.join(k).split()
-            print(''.join(str_f))
+        str_f = ''.join(k).split()
+        print(''.join(str_f))
 
     #decrypt
     def decrypt(self):
@@ -71,12 +72,17 @@ class enigma:
             print('Error')
             return enigma.decrypt(txt_dec)
         else:
+            file_open = open('xxx.txt')
+            ssss = len(txt_dec)
+
+            print(len(txt_dec),'\n',list(txt_dec) )
+
             print('Continue...')
 
-    def pool(self):
+    def tobeornottobe(self):
         if enigma.number =='1':
             enigma(symbol='', sp='', file='').encrypt()
         elif enigma.number =='2':
             enigma(symbol='', sp='', file='').decrypt()
 
-enigma(symbol='', sp='', file='').pool()
+enigma(symbol='', sp='', file='').tobeornottobe()
